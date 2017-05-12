@@ -1,14 +1,10 @@
-import bodyMovin from './bodymovin.js';
-
 class App {
     constructor() {
-        console.log('app');
-        console.log('bodyMovin', bodyMovin);
+        console.log('app', window);
     }
-
     setup() {
         let animData = {
-            container: document.getElementsByClassName('bodymovin'),
+            container: document.getElementById('bodymovin'),
                 renderer: 'svg',
                 loop: true,
                 autoplay: true,
@@ -18,9 +14,14 @@ class App {
             },
             path: 'js/BonequinhoFalando.json'
         };
-        bodyMovin.loadAnimation(animData);
+        bodymovin.loadAnimation(animData);
     }
 }
 
-let app = new App();
-app.setup();
+window.onload = () => {
+    let app = new App();
+    setTimeout(()=>{
+        app.setup();
+    }, 1000)
+}
+

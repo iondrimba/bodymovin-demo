@@ -1,12 +1,12 @@
 body {
-  background-color: #252323;
+  background-color: #333333;
   color: #fff;
   font-family: sans-serif;
   padding: 20px; }
 
-.bodymovin {
+#bodymovin {
   background-color: #333333;
-  width: 100%;
+  width: 40%;
   height: 100%;
   display: block;
   overflow: hidden;
