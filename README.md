@@ -1,8 +1,4 @@
-# ES6 Blank
-
-Ready to go ES6 Blank with Tests and Coverage.
-
-[![Travis build status](https://travis-ci.org/iondrimba/es6-blank.svg?branch=master)](https://travis-ci.org/iondrimba/es6-blank) [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/32r7s2skrgm9ubva/branch/master?svg=true)](https://ci.appveyor.com/project/iondrimba/es6-blank/branch/master) [![Coverage Status](https://coveralls.io/repos/github/iondrimba/es6-blank/badge.svg?branch=master)](https://coveralls.io/github/iondrimba/es6-blank?branch=master)
+# BodyMovin Test
 
 
 #### Requires:
