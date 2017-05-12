@@ -15,8 +15,7 @@
     "Gulp"
   ],
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iondrimba/es6-blank.git"
+    "type": "git"
   },
   "scripts": {
     "test": "karma start"
