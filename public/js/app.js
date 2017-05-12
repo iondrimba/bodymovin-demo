@@ -5,9 +5,9 @@ module.exports={"v":"4.6.8","fr":23.9759979248047,"ip":31.9999972303032,"op":123
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _BonequinhoFalando = require('./BonequinhoFalando.json');
+var _Bonequinho = require('./Bonequinho.json');
 
-var _BonequinhoFalando2 = _interopRequireDefault(_BonequinhoFalando);
+var _Bonequinho2 = _interopRequireDefault(_Bonequinho);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -34,7 +34,7 @@ var App = function () {
                 rendererSettings: {
                     progressiveLoad: true
                 },
-                animationData: _BonequinhoFalando2.default
+                animationData: _Bonequinho2.default
             };
             this.anim = bodymovin.loadAnimation(animData);
             this.btnPlay = document.getElementsByClassName('btn-play')[0];
@@ -117,4 +117,4 @@ window.onload = function () {
     }, 1000);
 };
 
-},{"./BonequinhoFalando.json":1}]},{},[2]);
+},{"./Bonequinho.json":1}]},{},[2]);

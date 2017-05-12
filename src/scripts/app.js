@@ -1,4 +1,4 @@
-import motionData from './BonequinhoFalando.json';
+import motionData from './Bonequinho.json';
 
 class App {
     constructor() {
