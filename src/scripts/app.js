@@ -30,7 +30,7 @@ class App {
         this.segments[0] = [0,26];
         this.segments[1] = [26,79];
         this.segments[2] = [79,110];
-        this.segments[3] = [110,200];
+        this.segments[3] = [110,155];
 
         this.body = document.getElementById('bodymovin');
 
@@ -77,7 +77,7 @@ class App {
         this.btnNext.onclick = ()=> {
            var s=  this.segments[this.index];
             this.index++;
-            this.anim.playSegments(s, true);
+            this.anim.playSegments(s, this.index<3);
 
         };
 

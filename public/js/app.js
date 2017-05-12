@@ -48,7 +48,7 @@ var App = function () {
             this.segments[0] = [0, 26];
             this.segments[1] = [26, 79];
             this.segments[2] = [79, 110];
-            this.segments[3] = [110, 200];
+            this.segments[3] = [110, 155];
 
             this.body = document.getElementById('bodymovin');
 
@@ -94,7 +94,7 @@ var App = function () {
             this.btnNext.onclick = function () {
                 var s = _this.segments[_this.index];
                 _this.index++;
-                _this.anim.playSegments(s, true);
+                _this.anim.playSegments(s, _this.index < 3);
             };
 
             this.btnPrev.onclick = function () {
