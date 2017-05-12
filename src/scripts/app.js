@@ -14,7 +14,30 @@ class App {
             },
             path: 'js/BonequinhoFalando.json'
         };
-        bodymovin.loadAnimation(animData);
+        this.anim = bodymovin.loadAnimation(animData);
+
+        this.btnPlay  = document.getElementsByClassName('btn-play');
+        this.btnStop  = document.getElementsByClassName('btn-stop');
+        this.btnRewind  = document.getElementsByClassName('btn-rewind');
+
+        bodymovin.onComplete = () => {
+            console.log('complete');
+        }
+        bodymovin.onLoopComplete = () => {
+            console.log('loopComplete');
+        }
+        bodymovin.segmentStart = () => {
+            console.log('segmentStart');
+        }
+    }
+    play() {
+        this.anim.play();
+    }
+    stop() {
+        this.anim.stop();
+    }
+    rewind() {
+        this.anim.setDirection(-1);
     }
 }
 
