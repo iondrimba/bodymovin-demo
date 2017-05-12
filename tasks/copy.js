@@ -7,6 +7,9 @@ module.exports = function () {
 	gulp.src(['./src/styles/app.css'])
 		.pipe(gulp.dest('./public/css'));
 
+	gulp.src(['./src/scripts/BonequinhoFalando.json'])
+		.pipe(gulp.dest('./public/js'));
+
 	return gulp.src(['./src/templates/index.html'])
 		.pipe(gulp.dest('./public'));
 };

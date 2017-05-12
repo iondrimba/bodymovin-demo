@@ -1,9 +1,26 @@
-import jquery from '../../node_modules/jquery/dist/jquery';
+import bodyMovin from './bodymovin.js';
 
 class App {
     constructor() {
-        this.$ = jquery;
+        console.log('app');
+        console.log('bodyMovin', bodyMovin);
+    }
+
+    setup() {
+        let animData = {
+            container: document.getElementsByClassName('bodymovin'),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                autoloadSegments: true,
+                rendererSettings: {
+                progressiveLoad:false
+            },
+            path: 'js/BonequinhoFalando.json'
+        };
+        bodyMovin.loadAnimation(animData);
     }
 }
 
-window.app = new App();
+let app = new App();
+app.setup();
