@@ -22,7 +22,7 @@ var App = function () {
                 renderer: 'svg',
                 loop: false,
                 autoplay: false,
-                autoloadSegments: true,
+                autoloadSegments: false,
                 rendererSettings: {
                     progressiveLoad: true
                 },
@@ -40,15 +40,15 @@ var App = function () {
                 _this.anim.removeEventListener('DOMLoaded');
             });
 
-            this.anim.addEventListener('onComplete', function () {
+            this.anim.addEventListener('complete', function () {
                 console.log('complete');
             });
 
-            this.anim.addEventListener('onLoopComplete', function () {
+            this.anim.addEventListener('loopComplete', function () {
                 console.log('loopComplete');
             });
 
-            this.anim.addEventListener('onSegmentStart', function () {
+            this.anim.addEventListener('segmentStart', function () {
                 console.log('segmentStart');
             });
 
@@ -77,6 +77,7 @@ var App = function () {
     }, {
         key: 'play',
         value: function play() {
+            this.anim.setDirection(1);
             this.anim.play();
         }
     }, {
@@ -88,6 +89,7 @@ var App = function () {
         key: 'rewind',
         value: function rewind() {
             this.anim.setDirection(-1);
+            this.anim.play();
         }
     }]);
 

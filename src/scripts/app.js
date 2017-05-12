@@ -8,7 +8,7 @@ class App {
             renderer: 'svg',
             loop: false,
             autoplay: false,
-            autoloadSegments: true,
+            autoloadSegments: false,
             rendererSettings: {
                 progressiveLoad:true
             },
@@ -26,15 +26,15 @@ class App {
            this.anim.removeEventListener('DOMLoaded');
         });
 
-        this.anim.addEventListener('onComplete',() => {
+        this.anim.addEventListener('complete',() => {
             console.log('complete');
         });
 
-        this.anim.addEventListener('onLoopComplete', () => {
+        this.anim.addEventListener('loopComplete', () => {
             console.log('loopComplete');
         });
 
-        this.anim.addEventListener('onSegmentStart', () => {
+        this.anim.addEventListener('segmentStart', () => {
             console.log('segmentStart');
         });
 
@@ -59,6 +59,7 @@ class App {
         this.anim.play();
     }
     play() {
+        this.anim.setDirection(1);
         this.anim.play();
     }
     pause() {
@@ -66,6 +67,7 @@ class App {
     }
     rewind() {
         this.anim.setDirection(-1);
+        this.anim.play();
     }
 }
 
