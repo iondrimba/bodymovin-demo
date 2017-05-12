@@ -17,15 +17,22 @@ class App {
             animationData: motionData
         };
         this.anim = bodymovin.loadAnimation(animData);
-
         this.btnPlay  = document.getElementsByClassName('btn-play')[0];
         this.btnRestart  = document.getElementsByClassName('btn-restart')[0];
         this.btnPause  = document.getElementsByClassName('btn-pause')[0];
         this.btnRewind  = document.getElementsByClassName('btn-rewind')[0];
+        this.body = document.getElementById('bodymovin');
 
         this.anim.addEventListener('DOMLoaded',() => {
             console.log('DOMLoaded');
            this.anim.removeEventListener('DOMLoaded');
+
+        //    window.addEventListener('mousemove', (ev) => {
+        //     var ax = (window.innerWidth /2 - ev.pageX)/20;
+        //     var ay = (window.innerHeight /2 - ev.pageY)/10;
+        //     this.body.setAttribute('style', 'transform = rotateY('+ax+'deg) rotateX('+ay+'deg);-webkit-transform: rotateY('+ax+'deg) rotateX('+ay+'deg);');
+        //    });
+
         });
 
         this.anim.addEventListener('complete',() => {
