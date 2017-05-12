@@ -1,3 +1,5 @@
+import motionData from './BonequinhoFalando.json';
+
 class App {
     constructor() {
         console.log('app', window);
@@ -12,7 +14,7 @@ class App {
             rendererSettings: {
                 progressiveLoad:true
             },
-            path: 'js/BonequinhoFalando.json'
+            animationData: motionData
         };
         this.anim = bodymovin.loadAnimation(animData);
 
