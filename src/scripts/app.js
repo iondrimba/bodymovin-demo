@@ -1,4 +1,4 @@
-import motionData from './BonequinhoFalando.json';
+import motionData from './tutorial.json';
 
 class App {
     constructor() {
@@ -10,21 +10,33 @@ class App {
             renderer: 'svg',
             loop: false,
             autoplay: false,
-            autoloadSegments: false,
+            autoloadSegments: true,
             rendererSettings: {
-                progressiveLoad:true
+                progressiveLoad:false
             },
             animationData: motionData
         };
+
+        this.index = 0;
         this.anim = bodymovin.loadAnimation(animData);
         this.btnPlay  = document.getElementsByClassName('btn-play')[0];
         this.btnRestart  = document.getElementsByClassName('btn-restart')[0];
         this.btnPause  = document.getElementsByClassName('btn-pause')[0];
         this.btnRewind  = document.getElementsByClassName('btn-rewind')[0];
+
+        this.btnPrev  = document.getElementsByClassName('btn-prev')[0];
+        this.btnNext  = document.getElementsByClassName('btn-next')[0];
+        this.segments = [];
+        this.segments[0] = [0,26];
+        this.segments[1] = [26,79];
+        this.segments[2] = [79,110];
+        this.segments[3] = [110,200];
+
         this.body = document.getElementById('bodymovin');
 
         this.anim.addEventListener('DOMLoaded',() => {
             console.log('DOMLoaded');
+           // this.anim.setSegment([0, 200], false);
            this.anim.removeEventListener('DOMLoaded');
 
         //    window.addEventListener('mousemove', (ev) => {
@@ -61,6 +73,23 @@ class App {
         this.btnRewind.onclick = ()=> {
             this.rewind();
         };
+
+        this.btnNext.onclick = ()=> {
+           var s=  this.segments[this.index];
+            this.index++;
+            this.anim.playSegments(s, true);
+
+        };
+
+        this.btnPrev.onclick = ()=> {
+            this.index--;
+            var s= this.segments[this.index];
+            this.anim.playSegments(s, true);
+        };
+
+        //  this.anim.playSegments([[0,26]],true);
+        //  this.anim.playSegments([[26,60]],true);
+        //  this.anim.playSegments([[60,110]],true);
     }
     restart() {
         this.anim.goToAndStop(0);
