@@ -15,32 +15,64 @@ var App = function () {
     _createClass(App, [{
         key: 'setup',
         value: function setup() {
+            var _this = this;
+
             var animData = {
                 container: document.getElementById('bodymovin'),
                 renderer: 'svg',
-                loop: true,
-                autoplay: true,
+                loop: false,
+                autoplay: false,
                 autoloadSegments: true,
                 rendererSettings: {
-                    progressiveLoad: false
+                    progressiveLoad: true
                 },
                 path: 'js/BonequinhoFalando.json'
             };
             this.anim = bodymovin.loadAnimation(animData);
 
-            this.btnPlay = document.getElementsByClassName('btn-play');
-            this.btnStop = document.getElementsByClassName('btn-stop');
-            this.btnRewind = document.getElementsByClassName('btn-rewind');
+            this.btnPlay = document.getElementsByClassName('btn-play')[0];
+            this.btnRestart = document.getElementsByClassName('btn-restart')[0];
+            this.btnPause = document.getElementsByClassName('btn-pause')[0];
+            this.btnRewind = document.getElementsByClassName('btn-rewind')[0];
 
-            bodymovin.onComplete = function () {
+            this.anim.addEventListener('DOMLoaded', function () {
+                console.log('DOMLoaded');
+                _this.anim.removeEventListener('DOMLoaded');
+            });
+
+            this.anim.addEventListener('onComplete', function () {
                 console.log('complete');
-            };
-            bodymovin.onLoopComplete = function () {
+            });
+
+            this.anim.addEventListener('onLoopComplete', function () {
                 console.log('loopComplete');
-            };
-            bodymovin.segmentStart = function () {
+            });
+
+            this.anim.addEventListener('onSegmentStart', function () {
                 console.log('segmentStart');
+            });
+
+            this.btnRestart.onclick = function () {
+                _this.restart();
             };
+
+            this.btnPlay.onclick = function () {
+                _this.play();
+            };
+
+            this.btnPause.onclick = function () {
+                _this.pause();
+            };
+            this.btnRewind.onclick = function () {
+                _this.rewind();
+            };
+        }
+    }, {
+        key: 'restart',
+        value: function restart() {
+            this.anim.goToAndStop(0);
+            this.anim.setDirection(1);
+            this.anim.play();
         }
     }, {
         key: 'play',
@@ -48,9 +80,9 @@ var App = function () {
             this.anim.play();
         }
     }, {
-        key: 'stop',
-        value: function stop() {
-            this.anim.stop();
+        key: 'pause',
+        value: function pause() {
+            this.anim.pause();
         }
     }, {
         key: 'rewind',

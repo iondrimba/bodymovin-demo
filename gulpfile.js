@@ -7,6 +7,8 @@ var bump = require('gulp-bump');
 var semver = require('semver');
 var renameMe = require('rename-me');
 var pckg = require('./package.json');
+var clean = require('gulp-clean');
+var deletefile = require('gulp-delete-file');
 
 var patch = semver.inc(pckg.version, 'patch');
 var minor = semver.inc(pckg.version, 'minor');
@@ -21,6 +23,19 @@ gulp.task('patch', function () {
 });
 gulp.task('major', function () {
 	return bumpPackageJson(major);
+});
+
+gulp.task('clean', function () {
+	return gulp.src('public', {read: false})
+		.pipe(clean());
+});
+
+gulp.task('deletefile', function () {
+    var regexp = /index\.html/;
+    gulp.src(['./public/index.html']).pipe(deletefile({
+        reg: regexp,
+        deleteMatch: true
+    }))
 });
 
 function bumpPackageJson(type) {
@@ -45,7 +60,7 @@ function bumpAppFiles(version) {
 //copies index.html file to public folder
 gulp.task('copy', require('./tasks/copy.js'));
 
-// using vinyl-source-stream: 
+// using vinyl-source-stream:
 gulp.task('browserify', require('./tasks/browserify.js'));
 
 //eslint task
@@ -66,10 +81,10 @@ gulp.task('sass', require('./tasks/sass.js'));
 //watch js/scss/teplate files
 gulp.task('watch', require('./tasks/watch.js'));
 
-//html min 
+//html min
 gulp.task('html-min', require('./tasks/html-min.js'));
 
-//css min 
+//css min
 gulp.task('minify-css', require('./tasks/minify-css.js'));
 
 //post css

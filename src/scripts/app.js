@@ -5,36 +5,64 @@ class App {
     setup() {
         let animData = {
             container: document.getElementById('bodymovin'),
-                renderer: 'svg',
-                loop: true,
-                autoplay: true,
-                autoloadSegments: true,
-                rendererSettings: {
-                progressiveLoad:false
+            renderer: 'svg',
+            loop: false,
+            autoplay: false,
+            autoloadSegments: true,
+            rendererSettings: {
+                progressiveLoad:true
             },
             path: 'js/BonequinhoFalando.json'
         };
         this.anim = bodymovin.loadAnimation(animData);
 
-        this.btnPlay  = document.getElementsByClassName('btn-play');
-        this.btnStop  = document.getElementsByClassName('btn-stop');
-        this.btnRewind  = document.getElementsByClassName('btn-rewind');
+        this.btnPlay  = document.getElementsByClassName('btn-play')[0];
+        this.btnRestart  = document.getElementsByClassName('btn-restart')[0];
+        this.btnPause  = document.getElementsByClassName('btn-pause')[0];
+        this.btnRewind  = document.getElementsByClassName('btn-rewind')[0];
 
-        bodymovin.onComplete = () => {
+        this.anim.addEventListener('DOMLoaded',() => {
+            console.log('DOMLoaded');
+           this.anim.removeEventListener('DOMLoaded');
+        });
+
+        this.anim.addEventListener('onComplete',() => {
             console.log('complete');
-        }
-        bodymovin.onLoopComplete = () => {
+        });
+
+        this.anim.addEventListener('onLoopComplete', () => {
             console.log('loopComplete');
-        }
-        bodymovin.segmentStart = () => {
+        });
+
+        this.anim.addEventListener('onSegmentStart', () => {
             console.log('segmentStart');
-        }
+        });
+
+        this.btnRestart.onclick = ()=> {
+            this.restart();
+        };
+
+        this.btnPlay.onclick = ()=> {
+            this.play();
+        };
+
+        this.btnPause.onclick = ()=> {
+            this.pause();
+        };
+        this.btnRewind.onclick = ()=> {
+            this.rewind();
+        };
+    }
+    restart() {
+        this.anim.goToAndStop(0);
+        this.anim.setDirection(1);
+        this.anim.play();
     }
     play() {
         this.anim.play();
     }
-    stop() {
-        this.anim.stop();
+    pause() {
+        this.anim.pause();
     }
     rewind() {
         this.anim.setDirection(-1);
