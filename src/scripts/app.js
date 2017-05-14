@@ -12,42 +12,42 @@ class App {
             autoplay: false,
             autoloadSegments: true,
             rendererSettings: {
-                progressiveLoad:false
+                progressiveLoad: false
             },
             animationData: motionData
         };
 
         this.index = 0;
         this.anim = bodymovin.loadAnimation(animData);
-        this.btnPlay  = document.getElementsByClassName('btn-play')[0];
-        this.btnRestart  = document.getElementsByClassName('btn-restart')[0];
-        this.btnPause  = document.getElementsByClassName('btn-pause')[0];
-        this.btnRewind  = document.getElementsByClassName('btn-rewind')[0];
+        this.btnPlay = document.getElementsByClassName('btn-play')[0];
+        this.btnRestart = document.getElementsByClassName('btn-restart')[0];
+        this.btnPause = document.getElementsByClassName('btn-pause')[0];
+        this.btnRewind = document.getElementsByClassName('btn-rewind')[0];
 
-        this.btnPrev  = document.getElementsByClassName('btn-prev')[0];
-        this.btnNext  = document.getElementsByClassName('btn-next')[0];
+        this.btnPrev = document.getElementsByClassName('btn-prev')[0];
+        this.btnNext = document.getElementsByClassName('btn-next')[0];
         this.segments = [];
-        this.segments[0] = [0,26];
-        this.segments[1] = [26,79];
-        this.segments[2] = [79,110];
-        this.segments[3] = [110,155];
+        this.segments[0] = [0, 26];
+        this.segments[1] = [26, 79];
+        this.segments[2] = [79, 110];
+        this.segments[3] = [110, 155];
 
         this.body = document.getElementById('bodymovin');
 
-        this.anim.addEventListener('DOMLoaded',() => {
+        this.anim.addEventListener('DOMLoaded', () => {
             console.log('DOMLoaded');
-           // this.anim.setSegment([0, 200], false);
-           this.anim.removeEventListener('DOMLoaded');
+            // this.anim.setSegment([0, 200], false);
+            this.anim.removeEventListener('DOMLoaded');
 
-        //    window.addEventListener('mousemove', (ev) => {
-        //     var ax = (window.innerWidth /2 - ev.pageX)/20;
-        //     var ay = (window.innerHeight /2 - ev.pageY)/10;
-        //     this.body.setAttribute('style', 'transform = rotateY('+ax+'deg) rotateX('+ay+'deg);-webkit-transform: rotateY('+ax+'deg) rotateX('+ay+'deg);');
-        //    });
+            //    window.addEventListener('mousemove', (ev) => {
+            //     var ax = (window.innerWidth /2 - ev.pageX)/20;
+            //     var ay = (window.innerHeight /2 - ev.pageY)/10;
+            //     this.body.setAttribute('style', 'transform = rotateY('+ax+'deg) rotateX('+ay+'deg);-webkit-transform: rotateY('+ax+'deg) rotateX('+ay+'deg);');
+            //    });
 
         });
 
-        this.anim.addEventListener('complete',() => {
+        this.anim.addEventListener('complete', () => {
             console.log('complete');
         });
 
@@ -59,31 +59,31 @@ class App {
             console.log('segmentStart');
         });
 
-        this.btnRestart.onclick = ()=> {
+        this.btnRestart.onclick = () => {
             this.restart();
         };
 
-        this.btnPlay.onclick = ()=> {
+        this.btnPlay.onclick = () => {
             this.play();
         };
 
-        this.btnPause.onclick = ()=> {
+        this.btnPause.onclick = () => {
             this.pause();
         };
-        this.btnRewind.onclick = ()=> {
+        this.btnRewind.onclick = () => {
             this.rewind();
         };
 
-        this.btnNext.onclick = ()=> {
-           var s=  this.segments[this.index];
+        this.btnNext.onclick = () => {
+            var s = this.segments[this.index];
             this.index++;
-            this.anim.playSegments(s, this.index<3);
+            this.anim.playSegments(s, this.index < 3);
 
         };
 
-        this.btnPrev.onclick = ()=> {
+        this.btnPrev.onclick = () => {
             this.index--;
-            var s= this.segments[this.index];
+            var s = this.segments[this.index];
             this.anim.playSegments(s, true);
         };
 
@@ -111,7 +111,7 @@ class App {
 
 window.onload = () => {
     let app = new App();
-    setTimeout(()=>{
+    setTimeout(() => {
         app.setup();
     }, 1000)
 }
