@@ -1,4 +1,5 @@
 import motionData from './tutorial.json';
+import motionData2 from './Carinhas.json';
 
 class App {
     constructor() {
@@ -17,12 +18,23 @@ class App {
             animationData: motionData
         };
 
+        let animData2 = {
+            container: document.getElementById('bodymovin2'),
+            renderer: 'svg',
+            loop: false,
+            autoplay: false,
+            autoloadSegments: true,
+            rendererSettings: {
+                progressiveLoad: false
+            },
+            animationData: motionData2
+        };
+
+        this.anim2 = bodymovin.loadAnimation(animData2);
+
         this.index = 0;
+        this.index2 = 0;
         this.anim = bodymovin.loadAnimation(animData);
-        this.btnPlay = document.getElementsByClassName('btn-play')[0];
-        this.btnRestart = document.getElementsByClassName('btn-restart')[0];
-        this.btnPause = document.getElementsByClassName('btn-pause')[0];
-        this.btnRewind = document.getElementsByClassName('btn-rewind')[0];
 
         this.btnPrev = document.getElementsByClassName('btn-prev')[0];
         this.btnNext = document.getElementsByClassName('btn-next')[0];
@@ -32,23 +44,23 @@ class App {
         this.segments[2] = [79, 110];
         this.segments[3] = [110, 155];
 
-        this.body = document.getElementById('bodymovin');
+        this.btnPrev2 = document.getElementsByClassName('btn-prev2')[0];
+        this.btnNext2 = document.getElementsByClassName('btn-next2')[0];
+        this.segments2 = [];
+        this.segments2[0] = [0, 80];
+        this.segments2[1] = [80, 200];
 
         this.anim.addEventListener('DOMLoaded', () => {
             console.log('DOMLoaded');
-            // this.anim.setSegment([0, 200], false);
             this.anim.removeEventListener('DOMLoaded');
-
-            //    window.addEventListener('mousemove', (ev) => {
-            //     var ax = (window.innerWidth /2 - ev.pageX)/20;
-            //     var ay = (window.innerHeight /2 - ev.pageY)/10;
-            //     this.body.setAttribute('style', 'transform = rotateY('+ax+'deg) rotateX('+ay+'deg);-webkit-transform: rotateY('+ax+'deg) rotateX('+ay+'deg);');
-            //    });
-
         });
 
         this.anim.addEventListener('complete', () => {
             console.log('complete');
+            this.btnNext.removeAttribute('disabled');
+            this.btnPrev.removeAttribute('disabled');
+            this.btnNext2.removeAttribute('disabled');
+            this.btnPrev2.removeAttribute('disabled');
         });
 
         this.anim.addEventListener('loopComplete', () => {
@@ -57,55 +69,40 @@ class App {
 
         this.anim.addEventListener('segmentStart', () => {
             console.log('segmentStart');
+            this.btnNext.setAttribute('disabled', true);
+            this.btnPrev.setAttribute('disabled', true);
+            this.btnNext2.setAttribute('disabled', true);
+            this.btnPrev2.setAttribute('disabled', true);
         });
 
-        this.btnRestart.onclick = () => {
-            this.restart();
-        };
-
-        this.btnPlay.onclick = () => {
-            this.play();
-        };
-
-        this.btnPause.onclick = () => {
-            this.pause();
-        };
-        this.btnRewind.onclick = () => {
-            this.rewind();
-        };
 
         this.btnNext.onclick = () => {
             var s = this.segments[this.index];
+            var [a, b] = s;
             this.index++;
-            this.anim.playSegments(s, this.index < 3);
-
+            this.anim.playSegments([a, b], this.index < 3);
         };
 
         this.btnPrev.onclick = () => {
             this.index--;
             var s = this.segments[this.index];
-            this.anim.playSegments(s, true);
+            var [a, b] = s;
+            this.anim.playSegments([b, a], true);
         };
 
-        //  this.anim.playSegments([[0,26]],true);
-        //  this.anim.playSegments([[26,60]],true);
-        //  this.anim.playSegments([[60,110]],true);
-    }
-    restart() {
-        this.anim.goToAndStop(0);
-        this.anim.setDirection(1);
-        this.anim.play();
-    }
-    play() {
-        this.anim.setDirection(1);
-        this.anim.play();
-    }
-    pause() {
-        this.anim.pause();
-    }
-    rewind() {
-        this.anim.setDirection(-1);
-        this.anim.play();
+        this.btnNext2.onclick = () => {
+            var s = this.segments2[this.index2];
+            var [a, b] = s;
+            this.index2++;
+            this.anim2.playSegments([a, b], this.index2 < 2);
+        };
+
+        this.btnPrev2.onclick = () => {
+            this.index2--;
+            var s = this.segments2[this.index2];
+            var [a, b] = s;
+            this.anim2.playSegments([b, a], true);
+        };
     }
 }
 
