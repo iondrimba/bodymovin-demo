@@ -4,7 +4,8 @@ body {
   font-family: sans-serif;
   padding: 20px; }
 
-#bodymovin {
+#bodymovin,
+#bodymovin2 {
   background-color: #333;
   display: block;
   height: 100%;
