@@ -84,8 +84,6 @@ var App = function () {
                 console.log('complete');
                 _this.btnNext.removeAttribute('disabled');
                 _this.btnPrev.removeAttribute('disabled');
-                _this.btnNext2.removeAttribute('disabled');
-                _this.btnPrev2.removeAttribute('disabled');
             });
 
             this.anim.addEventListener('loopComplete', function () {
@@ -96,6 +94,16 @@ var App = function () {
                 console.log('segmentStart');
                 _this.btnNext.setAttribute('disabled', true);
                 _this.btnPrev.setAttribute('disabled', true);
+            });
+
+            this.anim2.addEventListener('complete', function () {
+                console.log('complete');
+                _this.btnNext2.removeAttribute('disabled');
+                _this.btnPrev2.removeAttribute('disabled');
+            });
+
+            this.anim2.addEventListener('segmentStart', function () {
+                console.log('segmentStart');
                 _this.btnNext2.setAttribute('disabled', true);
                 _this.btnPrev2.setAttribute('disabled', true);
             });
