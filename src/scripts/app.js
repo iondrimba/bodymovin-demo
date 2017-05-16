@@ -59,8 +59,6 @@ class App {
             console.log('complete');
             this.btnNext.removeAttribute('disabled');
             this.btnPrev.removeAttribute('disabled');
-            this.btnNext2.removeAttribute('disabled');
-            this.btnPrev2.removeAttribute('disabled');
         });
 
         this.anim.addEventListener('loopComplete', () => {
@@ -71,6 +69,16 @@ class App {
             console.log('segmentStart');
             this.btnNext.setAttribute('disabled', true);
             this.btnPrev.setAttribute('disabled', true);
+        });
+
+        this.anim2.addEventListener('complete', () => {
+            console.log('complete');
+            this.btnNext2.removeAttribute('disabled');
+            this.btnPrev2.removeAttribute('disabled');
+        });
+
+        this.anim2.addEventListener('segmentStart', () => {
+            console.log('segmentStart');
             this.btnNext2.setAttribute('disabled', true);
             this.btnPrev2.setAttribute('disabled', true);
         });
