@@ -78,6 +78,7 @@ class App {
 
         this.btnNext.onclick = () => {
             var s = this.segments[this.index];
+
             var [a, b] = s;
             this.index++;
             this.anim.playSegments([a, b], this.index < 3);
